@@ -3,25 +3,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { debounce } from 'lodash';
 
-import UsersOverview from '../components/UsersOverview/UsersOverview';
-import { GET_GITHUB_USERS_REQUEST, GET_SEARCHED_USERS_REQUEST, UPDATE_CURRENT_PAGE_ID, UPDATE_INPUT_VALUE } from '../actions';
+import RepositoriesOverview from '../components/RepositoriesOverview/RepositoriesOverview';
+import { GET_GITHUB_REPOSITORIES_REQUEST, GET_SEARCHED_REPOSITORIES_REQUEST, UPDATE_CURRENT_PAGE_ID, UPDATE_INPUT_VALUE } from '../actions';
 import { ROUTES } from '../../../routes/routeNames';
 import { useForm } from '../../../helpers/hooks';
 import { PAGE } from '../../../constants/pageConstants';
 
 const { ITEMS_PER_PAGE, DEFAULT_PAGE_ID, DEBOUNCE_DELAY } = PAGE;
 
-const UsersContainer = () => {
+const RepositoriesContainer = () => {
     const [searchInput, setSearchInput] = useForm({ searchValue: '' });
 
     const dispatch = useDispatch();
 
     const history = useHistory();
 
-    const { users, isLoading, searchInputValue, currentPageId } = useSelector(state => state.usersPage);
+    const { repositories, isLoading, searchInputValue, currentPageId } = useSelector(state => state.repositoriesPage);
 
-    const handleGoToUser = useCallback((name) => {
-        history.push(`${ROUTES.USERS}/${name}`);
+    const handleGoToRepository = useCallback((id) => {
+        history.push(`${ROUTES.REPOSITORIES}/${id}`);
     }, [history]);
 
 
@@ -33,12 +33,12 @@ const UsersContainer = () => {
             currentPageId
         };
 
-        isEmptyInput ? dispatch(GET_GITHUB_USERS_REQUEST()) : dispatch(GET_SEARCHED_USERS_REQUEST(params));
+        isEmptyInput ? dispatch(GET_GITHUB_REPOSITORIES_REQUEST()) : dispatch(GET_SEARCHED_REPOSITORIES_REQUEST(params));
     }, []);
 
 
-    const delayedQuery = useCallback(debounce((params, isEmptyInput) => isEmptyInput ? dispatch(GET_GITHUB_USERS_REQUEST()) :
-        dispatch(GET_SEARCHED_USERS_REQUEST(params)), DEBOUNCE_DELAY), [dispatch]);
+    const delayedQuery = useCallback(debounce((params, isEmptyInput) => isEmptyInput ? dispatch(GET_GITHUB_REPOSITORIES_REQUEST()) :
+        dispatch(GET_SEARCHED_REPOSITORIES_REQUEST(params)), DEBOUNCE_DELAY), [dispatch]);
 
 
     const handleSearchInputChange = useCallback((event) => {
@@ -59,11 +59,11 @@ const UsersContainer = () => {
     }, [dispatch, setSearchInput, currentPageId, delayedQuery]);
 
 
-    const getUserSubarray = useMemo(() => {
+    const getRepositoriesSubarray = useMemo(() => {
         const firstItemIndex = (currentPageId - 1) * ITEMS_PER_PAGE;
 
-        return users.slice(firstItemIndex, firstItemIndex + ITEMS_PER_PAGE);
-    }, [currentPageId, users]);
+        return repositories.slice(firstItemIndex, firstItemIndex + ITEMS_PER_PAGE);
+    }, [currentPageId, repositories]);
 
 
     const handlePageChange = useCallback((event, pageId) => {
@@ -76,22 +76,22 @@ const UsersContainer = () => {
 
         const isEmptyInput = searchInputValue.trim() === '';
 
-        if (!isEmptyInput) dispatch(GET_SEARCHED_USERS_REQUEST(params));
+        if (!isEmptyInput) dispatch(GET_SEARCHED_REPOSITORIES_REQUEST(params));
     }, [dispatch, searchInputValue]);
 
 
     return (
-        <UsersOverview
+        <RepositoriesOverview
             handleSearchInputChange={handleSearchInputChange}
-            handleGoToUser={handleGoToUser}
-            users={users}
+            handleGoToRepository={handleGoToRepository}
+            repositories={repositories}
             isLoading={isLoading}
             handlePageChange={handlePageChange}
             currentPageId={currentPageId}
             searchInputValue={searchInputValue}
-            getUserSubarray={getUserSubarray}
+            getRepositoriesSubarray={getRepositoriesSubarray}
         />
     );
 };
 
-export default UsersContainer;
+export default RepositoriesContainer;

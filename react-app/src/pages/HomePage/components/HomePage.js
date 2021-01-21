@@ -7,7 +7,7 @@ const HomePage = () => {
 
     return (
         <div>
-            <button onClick={() => history.push(ROUTES.USERS)}>Users</button>
+            <button onClick={() => history.push(ROUTES.REPOSITORIES)}>Repositories</button>
         </div>
     );
 };

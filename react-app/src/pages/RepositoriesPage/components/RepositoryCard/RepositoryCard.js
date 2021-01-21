@@ -13,20 +13,20 @@ import PropTypes from 'prop-types';
 
 import styles from './styles';
 
-const UserCard = ({ name, avatar, classes, handleGoToDetails }) => {
+const RepositoryCard = ({ name, stars, commits, ownerUrl, classes, handleGoToDetails }) => {
+
     return (
         <Card className={classes.wrapper}>
             <CardActionArea>
                 <CardContent>
                     <Box className={classes.avatarNameWrapper}>
-                        <Avatar className={classes.avatar} src={avatar} />
                         <Typography gutterBottom variant="h5" style={{ marginBottom: 0 }}>
                             {name}
                         </Typography>
                     </Box>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        Some text
-                    </Typography>
+                    <Box><a href={stars}>stars</a></Box>
+                    <Box><a href={commits}>commits</a></Box>
+                    <Box><a href={ownerUrl}>ownerUrl</a></Box>
                 </CardContent>
             </CardActionArea>
             <CardActions>
@@ -38,11 +38,14 @@ const UserCard = ({ name, avatar, classes, handleGoToDetails }) => {
     );
 };
 
-UserCard.propTypes = {
+
+RepositoryCard.propTypes = {
     classes: PropTypes.oneOfType([PropTypes.object]).isRequired,
     name: PropTypes.string.isRequired,
-    avatar: PropTypes.string,
+    stars: PropTypes.string.isRequired,
+    commits: PropTypes.string.isRequired,
+    ownerUrl: PropTypes.string.isRequired,
     handleGoToDetails: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(UserCard);
+export default withStyles(styles)(RepositoryCard);

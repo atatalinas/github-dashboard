@@ -1,17 +1,17 @@
-import * as usersPageActions from '../pages/UsersPage/actions';
-import * as usersPageApi from '../pages/UsersPage/api';
+import * as repositoriesPageActions from '../pages/RepositoriesPage/actions';
+import * as repositoriesPageApi from '../pages/RepositoriesPage/api';
 
-import * as userPageActions from '../pages/UserPage/actions';
-import * as userPageApi from '../pages/UserPage/api';
+import * as repositoryPageActions from '../pages/RepositoryPage/actions';
+import * as repositoryPageApi from '../pages/RepositoryPage/api';
 
 
 const apiCallsMapping = (action) => {
     const mapping = {
-        [usersPageActions.GET_GITHUB_USERS_REQUEST]: usersPageApi.getAllUsers,
+        [repositoriesPageActions.GET_GITHUB_REPOSITORIES_REQUEST]: repositoriesPageApi.getAllRepositories,
 
-        [usersPageActions.GET_SEARCHED_USERS_REQUEST]: usersPageApi.searchUsersByName,
+        [repositoriesPageActions.GET_SEARCHED_REPOSITORIES_REQUEST]: repositoriesPageApi.searchRepositoriesByName,
 
-        [userPageActions.GET_USER_INFO_REQUEST]: userPageApi.getUserByName
+        [repositoryPageActions.GET_REPOSITORY_INFO_REQUEST]: repositoryPageApi.getRepositoryById
     };
 
     if (!mapping.hasOwnProperty(action.type)) {
