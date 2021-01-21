@@ -5,7 +5,6 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { configureStore } from './store/configureStore';
 import Routes from './routes/Routes';
-import UsersContainer from './pages/UsersPage/containers/UsersContainer';
 
 const store = configureStore();
 

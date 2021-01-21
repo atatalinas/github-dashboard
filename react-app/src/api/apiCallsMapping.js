@@ -9,6 +9,8 @@ const apiCallsMapping = (action) => {
     const mapping = {
         [usersPageActions.GET_GITHUB_USERS_REQUEST]: usersPageApi.getAllUsers,
 
+        [usersPageActions.GET_SEARCHED_USERS_REQUEST]: usersPageApi.searchUsersByName,
+
         [userPageActions.GET_USER_INFO_REQUEST]: userPageApi.getUserByName
     };
 

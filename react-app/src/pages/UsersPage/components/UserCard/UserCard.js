@@ -24,7 +24,6 @@ const UserCard = ({ name, avatar, classes, handleGoToDetails }) => {
                             {name}
                         </Typography>
                     </Box>
-
                     <Typography variant="body2" color="textSecondary" component="p">
                         Some text
                     </Typography>
