@@ -11,3 +11,5 @@ export const GET_SEARCHED_USERS_FAIL = createAction('GET_SEARCHED_USERS_FAIL');
 
 
 export const UPDATE_INPUT_VALUE = createAction('UPDATE_INPUT_VALUE');
+
+export const UPDATE_CURRENT_PAGE_ID = createAction('UPDATE_CURRENT_PAGE_ID');

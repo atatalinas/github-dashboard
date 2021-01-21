@@ -6,7 +6,8 @@ const defaultState = {
     users: [],
     isLoading: false,
     errors: '',
-    searchInputValue: ''
+    searchInputValue: '',
+    currentPageId: ''
 };
 
 const usersPage = handleActions({
@@ -14,13 +15,11 @@ const usersPage = handleActions({
         ...state,
         isLoading: true
     }),
-    [actions.GET_GITHUB_USERS_SUCCESS]: (state, { payload }) => {
-        return {
-            ...state,
-            isLoading: false,
-            users: payload.response
-        }
-    },
+    [actions.GET_GITHUB_USERS_SUCCESS]: (state, { payload }) => ({
+        ...state,
+        isLoading: false,
+        users: payload.response
+    }),
     [actions.GET_GITHUB_USERS_FAIL]: (state, { payload }) => ({
         ...state,
         isLoading: false,
@@ -30,24 +29,24 @@ const usersPage = handleActions({
         ...state,
         isLoading: true
     }),
-    [actions.GET_SEARCHED_USERS_SUCCESS]: (state, { payload }) => {
-        return {
-            ...state,
-            isLoading: false,
-            users: payload.response.items
-        }
-    },
+    [actions.GET_SEARCHED_USERS_SUCCESS]: (state, { payload }) => ({
+        ...state,
+        isLoading: false,
+        users: payload.response.items
+    }),
     [actions.GET_SEARCHED_USERS_FAIL]: (state, { payload }) => ({
         ...state,
         isLoading: false,
         errors: payload.response
     }),
-    [actions.UPDATE_INPUT_VALUE]: (state, { payload }) => {
-        return {
-            ...state,
-            searchInputValue: payload
-        }
-    }
+    [actions.UPDATE_INPUT_VALUE]: (state, { payload }) => ({
+        ...state,
+        searchInputValue: payload
+    }),
+    [actions.UPDATE_CURRENT_PAGE_ID]: (state, { payload }) => ({
+        ...state,
+        currentPageId: payload
+    })
 }, defaultState);
 
 export default usersPage;
