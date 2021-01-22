@@ -23,20 +23,35 @@ const styles = () => ({
     margin: '15px auto',
   },
   circularProgressContainer: {
-    width: '100%',
-    height: '100%',
-    position: 'fixed',
-    top: 0,
-    left: 0,
     display: 'flex',
     alignItems: 'center',
     alignContent: 'center',
     justifyContent: 'center',
-    overflow: 'auto',
   },
   circularProgressItem: {
     display: 'block',
     border: 'none'
+  },
+  notFoundWrapper: {
+    minHeight: '300px',
+    position: 'relative'
+  },
+  notFoundWrapper: {
+    minHeight: '300px',
+    position: 'relative'
+  },
+  notFoundItem: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)'
+  },
+  typographyStyle: {
+    marginBottom: 10
+  },
+  clearButton: {
+    marginTop: 10,
+    fontSize: 18
   }
 });
 

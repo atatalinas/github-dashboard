@@ -15,6 +15,12 @@ const styles = () => ({
         borderRadius: 10,
         padding: 32,
     },
+    circularProgressContainer: {
+        display: 'flex',
+        alignItems: 'center',
+        alignContent: 'center',
+        justifyContent: 'center',
+    },
     avatar: {
         height: 60,
         width: 60,
@@ -26,18 +32,6 @@ const styles = () => ({
         display: 'flex',
         flexDirection: 'row',
         margin: '10px 0px'
-    },
-    circularProgressContainer: {
-        width: '100%',
-        height: '100%',
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        display: 'flex',
-        alignItems: 'center',
-        alignContent: 'center',
-        justifyContent: 'center',
-        overflow: 'auto',
     },
     circularProgressItem: {
         display: 'block',

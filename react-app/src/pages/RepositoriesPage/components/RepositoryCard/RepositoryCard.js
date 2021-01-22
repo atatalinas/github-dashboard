@@ -31,7 +31,7 @@ const RepositoryCard = ({ name, ownerUrl, userLogin, classes, handleGoToDetails 
                     <Box>
                         <Typography gutterBottom variant="body1" className={classes.textElement}>
                             Link to github:
-                            <Link href={ownerUrl}> {ownerUrl}</Link>
+                            <Link href={ownerUrl} target='_blank'> {ownerUrl}</Link>
                         </Typography>
                     </Box>
                 </CardContent>

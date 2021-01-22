@@ -6,14 +6,11 @@ import { debounce } from 'lodash';
 import RepositoriesOverview from '../components/RepositoriesOverview/RepositoriesOverview';
 import { GET_GITHUB_REPOSITORIES_REQUEST, GET_SEARCHED_REPOSITORIES_REQUEST, UPDATE_CURRENT_PAGE_ID, UPDATE_INPUT_VALUE } from '../actions';
 import { ROUTES } from '../../../routes/routeNames';
-import { useForm } from '../../../helpers/hooks';
 import { PAGE } from '../../../constants/pageConstants';
 
 const { ITEMS_PER_PAGE, DEFAULT_PAGE_ID, DEBOUNCE_DELAY } = PAGE;
 
 const RepositoriesContainer = () => {
-    const [searchInput, setSearchInput] = useForm({ searchValue: '' });
-
     const dispatch = useDispatch();
 
     const history = useHistory();
@@ -41,8 +38,6 @@ const RepositoriesContainer = () => {
 
 
     const handleSearchInputChange = useCallback((event) => {
-        setSearchInput(event);
-
         dispatch(UPDATE_INPUT_VALUE(event.target.value));
 
         if (currentPageId !== DEFAULT_PAGE_ID) dispatch(UPDATE_CURRENT_PAGE_ID(DEFAULT_PAGE_ID));
@@ -55,7 +50,23 @@ const RepositoriesContainer = () => {
         const isEmptyInput = event.target.value.trim() === '';
 
         delayedQuery(params, isEmptyInput);
-    }, [dispatch, setSearchInput, currentPageId, delayedQuery]);
+    }, [dispatch, currentPageId, delayedQuery]);
+
+
+    const handleClearInput = useCallback((event) => {
+        dispatch(UPDATE_INPUT_VALUE(''));
+
+        if (currentPageId !== DEFAULT_PAGE_ID) dispatch(UPDATE_CURRENT_PAGE_ID(DEFAULT_PAGE_ID));
+
+        const params = {
+            searchInputValue: event.target.value,
+            currentPageId
+        };
+
+        const isEmptyInput = true;
+
+        delayedQuery(params, isEmptyInput);
+    }, [dispatch, currentPageId, delayedQuery]);
 
 
     const getRepositoriesSubarray = useMemo(() => {
@@ -90,6 +101,7 @@ const RepositoriesContainer = () => {
             currentPageId={currentPageId}
             searchInputValue={searchInputValue}
             getRepositoriesSubarray={getRepositoriesSubarray}
+            handleClearInput={handleClearInput}
         />
     );
 };
