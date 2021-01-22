@@ -21,18 +21,15 @@ const repositoryPage = handleActions({
         isLoading: true
     }),
     [actions.GET_REPOSITORY_INFO_SUCCESS]: (state, { payload }) => {
-        const { name, stargazers_url, commits_url, owner, languages_url, description } = payload.response;
+        const { name, owner, description } = payload.response;
 
         return {
             ...state,
             isLoading: false,
             repositoryName: name,
-            starsUrl: stargazers_url,
-            commitsUrl: commits_url,
             avatar: owner.avatar_url,
             userLogin: owner.login,
-            linkToGithub: owner.url,
-            languagesUrl: languages_url,
+            linkToGithub: owner.html_url,
             decription: description
         }
     },
@@ -43,6 +40,46 @@ const repositoryPage = handleActions({
             errors: payload.response
         }
     },
+    [actions.GET_REPOSITORY_ADDITIONAL_INFO_REQUEST]: (state) => ({
+        ...state,
+        isLoading: true
+    }),
+    [actions.GET_REPOSITORY_ADDITIONAL_INFO_SUCCESS]: (state, { payload }) => {
+        const { stargazers_count, created_at } = payload.response;
+
+        return {
+            ...state,
+            isLoading: false,
+            starsUrl: stargazers_count,
+            commitsUrl: created_at,
+        }
+    },
+    [actions.GET_REPOSITORY_ADDITIONAL_INFO_FAIL]: (state, { payload }) => {
+        return {
+            ...state,
+            isLoading: false,
+            errors: payload.response
+        }
+    },
+    [actions.GET_REPOSITORY_LANGUAGES_INFO_REQUEST]: (state) => ({
+        ...state,
+        isLoading: true
+    }),
+    [actions.GET_REPOSITORY_LANGUAGES_INFO_SUCCESS]: (state, { payload }) => {
+        return {
+            ...state,
+            isLoading: false,
+            languagesUrl: payload.response
+        }
+    },
+    [actions.GET_REPOSITORY_LANGUAGES_INFO_FAIL]: (state, { payload }) => {
+        return {
+            ...state,
+            isLoading: false,
+            errors: payload.response
+        }
+    },
 }, defaultState);
 
 export default repositoryPage;
+

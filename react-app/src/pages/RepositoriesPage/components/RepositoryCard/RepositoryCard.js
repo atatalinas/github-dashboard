@@ -7,14 +7,14 @@ import {
     CardActions,
     Button,
     Avatar,
+    Link,
     Box
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 import styles from './styles';
 
-const RepositoryCard = ({ name, stars, commits, ownerUrl, classes, handleGoToDetails }) => {
-
+const RepositoryCard = ({ name, ownerUrl, userLogin, classes, handleGoToDetails }) => {
     return (
         <Card className={classes.wrapper}>
             <CardActionArea>
@@ -24,14 +24,23 @@ const RepositoryCard = ({ name, stars, commits, ownerUrl, classes, handleGoToDet
                             {name}
                         </Typography>
                     </Box>
-                    <Box><a href={stars}>stars</a></Box>
-                    <Box><a href={commits}>commits</a></Box>
-                    <Box><a href={ownerUrl}>ownerUrl</a></Box>
+                    <Box>
+                        <Typography gutterBottom variant="body1" style={{ marginBottom: 0 }}>
+                            Owner: {userLogin}
+                        </Typography>
+                    </Box>
+                    <Box>
+                        <Typography gutterBottom variant="body1" style={{ marginBottom: 0 }}>
+                            Link to github:
+                            <Link href={ownerUrl}> {ownerUrl}</Link>
+                        </Typography>
+                    </Box>
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button onClick={handleGoToDetails} size="small" color="primary">
-                    Learn more
+
+                <Button variant="text" onClick={handleGoToDetails} size="small" color="primary">
+                    LEARN MORE
                 </Button>
             </CardActions>
         </Card>
@@ -49,3 +58,11 @@ RepositoryCard.propTypes = {
 };
 
 export default withStyles(styles)(RepositoryCard);
+
+/*
+
+ <Button onClick={handleGoToDetails} size="small" color="primary">
+                    Learn more
+                </Button>
+
+                */

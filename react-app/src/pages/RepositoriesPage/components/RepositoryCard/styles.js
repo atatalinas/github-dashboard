@@ -1,6 +1,7 @@
 const styles = () => ({
     wrapper: {
-        background: 'burlywood',
+        background: '#D3FBA9',
+        textAlign: 'left'
     },
     avatarNameWrapper: {
         dispay: 'flex',

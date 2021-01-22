@@ -60,10 +60,12 @@ const RepositoriesContainer = () => {
 
 
     const getRepositoriesSubarray = useMemo(() => {
+        if (currentPageId === '') dispatch(UPDATE_CURRENT_PAGE_ID(DEFAULT_PAGE_ID));
+
         const firstItemIndex = (currentPageId - 1) * ITEMS_PER_PAGE;
 
         return repositories.slice(firstItemIndex, firstItemIndex + ITEMS_PER_PAGE);
-    }, [currentPageId, repositories]);
+    }, [currentPageId, repositories, dispatch]);
 
 
     const handlePageChange = useCallback((event, pageId) => {
