@@ -6,7 +6,6 @@ import {
     Typography,
     CardActions,
     Button,
-    Avatar,
     Link,
     Box
 } from '@material-ui/core';
@@ -20,17 +19,17 @@ const RepositoryCard = ({ name, ownerUrl, userLogin, classes, handleGoToDetails 
             <CardActionArea>
                 <CardContent>
                     <Box className={classes.avatarNameWrapper}>
-                        <Typography gutterBottom variant="h5" style={{ marginBottom: 0 }}>
+                        <Typography gutterBottom variant="h5" className={classes.textElement}>
                             {name}
                         </Typography>
                     </Box>
                     <Box>
-                        <Typography gutterBottom variant="body1" style={{ marginBottom: 0 }}>
+                        <Typography gutterBottom variant="body1" className={classes.textElement}>
                             Owner: {userLogin}
                         </Typography>
                     </Box>
                     <Box>
-                        <Typography gutterBottom variant="body1" style={{ marginBottom: 0 }}>
+                        <Typography gutterBottom variant="body1" className={classes.textElement}>
                             Link to github:
                             <Link href={ownerUrl}> {ownerUrl}</Link>
                         </Typography>
@@ -38,7 +37,6 @@ const RepositoryCard = ({ name, ownerUrl, userLogin, classes, handleGoToDetails 
                 </CardContent>
             </CardActionArea>
             <CardActions>
-
                 <Button variant="text" onClick={handleGoToDetails} size="small" color="primary">
                     LEARN MORE
                 </Button>
@@ -47,22 +45,11 @@ const RepositoryCard = ({ name, ownerUrl, userLogin, classes, handleGoToDetails 
     );
 };
 
-
 RepositoryCard.propTypes = {
     classes: PropTypes.oneOfType([PropTypes.object]).isRequired,
     name: PropTypes.string.isRequired,
-    stars: PropTypes.string.isRequired,
-    commits: PropTypes.string.isRequired,
     ownerUrl: PropTypes.string.isRequired,
     handleGoToDetails: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(RepositoryCard);
-
-/*
-
- <Button onClick={handleGoToDetails} size="small" color="primary">
-                    Learn more
-                </Button>
-
-                */

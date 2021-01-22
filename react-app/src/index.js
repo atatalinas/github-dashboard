@@ -7,6 +7,7 @@ import { persistStore } from 'redux-persist';
 
 import { configureStore } from './store/configureStore';
 import Routes from './routes/Routes';
+import './index.css';
 
 const store = configureStore();
 

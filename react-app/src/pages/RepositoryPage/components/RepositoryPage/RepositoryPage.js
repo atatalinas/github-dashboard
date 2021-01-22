@@ -21,7 +21,7 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 import styles from './styles';
 
 const RepositoryPage = ({ repositoryName, starsUrl, commitsUrl, avatar, userLogin, linkToGithub, languagesUrl, decription,
-    isLoading, errors, classes, handleGoToRepositories }) => {
+    isLoading, classes, handleGoToRepositories }) => {
 
     return (
         <Box>
@@ -35,7 +35,7 @@ const RepositoryPage = ({ repositoryName, starsUrl, commitsUrl, avatar, userLogi
                             <CardContent>
                                 <Box className={classes.flexBox}>
                                     <Box>
-                                        <Typography noWrap gutterBottom variant="h3" style={{ marginBottom: '10px', textAlign: 'center' }}>
+                                        <Typography noWrap gutterBottom variant="h3" className={classes.appHeader}>
                                             {repositoryName}
                                         </Typography>
                                     </Box>
@@ -45,42 +45,38 @@ const RepositoryPage = ({ repositoryName, starsUrl, commitsUrl, avatar, userLogi
                                         </Badge>
                                     </Box>
                                 </Box>
-
                                 <Box>
-                                    <Typography gutterBottom variant="body1" style={{ marginBottom: 0 }}>
+                                    <Typography gutterBottom variant="body1" className={classes.textElement}>
                                         Created: {new Date(commitsUrl).toDateString()}
                                     </Typography>
                                 </Box>
                                 <Box className={classes.flexBox}>
                                     <Box className={classes.avatar} style={{ backgroundImage: `url(${avatar})` }}></Box>
                                     <Box>
-                                        <Typography gutterBottom variant="body1" style={{ marginBottom: 0 }}>
+                                        <Typography gutterBottom variant="body1" className={classes.textElement}>
                                             User login: {userLogin}
                                         </Typography>
-                                        <Typography gutterBottom variant="body1" style={{ marginBottom: 0 }}>
+                                        <Typography gutterBottom variant="body1" className={classes.textElement}>
                                             Link to github: <Link href={linkToGithub}> {linkToGithub}</Link>
                                         </Typography>
                                     </Box>
                                 </Box>
-
                                 <Box className={classes.flexBox}>
-                                    <Box style={{ marginRight: 10 }} >
-                                        <Typography gutterBottom variant="body1" >
-                                            Languages:
-                                </Typography>
+                                    <Box className={classes.textElement} >
+                                        <Typography gutterBottom variant="body1" >Languages: </Typography>
                                     </Box>
                                     <Box style={{ textAlign: 'justify', marginBottom: 0 }} >
-                                        <Typography gutterBottom variant="body1" style={{ marginBottom: 0 }}>
-                                            {Object.keys(languagesUrl).map((language, index) => {
+                                        <Typography gutterBottom variant="body1" className={classes.textElement}>
+                                            {Object.keys(languagesUrl).map((language) => {
                                                 return (
-                                                    <>{language} </>
+                                                    <> {language} </>
                                                 )
                                             })}
                                         </Typography>
                                     </Box>
                                 </Box>
                                 <Box>
-                                    <Typography gutterBottom variant="body1" style={{ marginBottom: 0 }}>
+                                    <Typography gutterBottom variant="body1" className={classes.textElement}>
                                         Decription: {decription}
                                     </Typography>
                                 </Box>
@@ -89,7 +85,7 @@ const RepositoryPage = ({ repositoryName, starsUrl, commitsUrl, avatar, userLogi
                         <CardActions>
                             <Button variant="text" size="small" color="primary" onClick={handleGoToRepositories} >
                                 GO BACK
-                    </Button>
+                            </Button>
                         </CardActions>
                     </Card>
                 </Box >
@@ -99,7 +95,23 @@ const RepositoryPage = ({ repositoryName, starsUrl, commitsUrl, avatar, userLogi
 };
 
 RepositoryPage.propTypes = {
-
+    classes: PropTypes.oneOfType([PropTypes.object]).isRequired,
+    repositoryName: PropTypes.string.isRequired,
+    starsUrl: PropTypes.oneOfType([
+        PropTypes.string.isRequired,
+        PropTypes.number.isRequired
+    ]),
+    commitsUrl: PropTypes.string.isRequired,
+    avatar: PropTypes.string.isRequired,
+    linkToGithub: PropTypes.string.isRequired,
+    userLogin: PropTypes.string.isRequired,
+    languagesUrl: PropTypes.oneOfType([
+        PropTypes.object.isRequired,
+        PropTypes.string.isRequired
+    ]),
+    decription: PropTypes.string.isRequired,
+    handleGoToRepositories: PropTypes.func.isRequired,
 };
+
 
 export default withStyles(styles)(RepositoryPage);

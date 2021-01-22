@@ -23,7 +23,7 @@ const RepositoriesOverview = ({ repositories, isLoading, errors, handleGoToRepos
                     <Typography variant="h3" style={{ marginBottom: 10 }}>
                         Github-dashboard
                     </Typography>
-                    <Box style={{ marginBottom: 25 }} >
+                    <Box className={classes.boxStyle}>
                         <Box>
                             <TextField
                                 fullWidth
@@ -41,7 +41,7 @@ const RepositoriesOverview = ({ repositories, isLoading, errors, handleGoToRepos
 
                     {searchInputValue.trim() === '' ? getRepositoriesSubarray.map((repository) => {
                         return (
-                            <Box style={{ marginBottom: 25 }}>
+                            <Box className={classes.boxStyle}>
                                 <RepositoryCard
                                     name={repository.name}
                                     ownerUrl={repository.owner.html_url}
@@ -52,7 +52,7 @@ const RepositoriesOverview = ({ repositories, isLoading, errors, handleGoToRepos
                         )
                     }) : repositories.map((repository) => {
                         return (
-                            <Box style={{ marginBottom: 25 }}>
+                            <Box className={classes.boxStyle}>
                                 <RepositoryCard
                                     name={repository.name}
                                     ownerUrl={repository.owner.html_url}
@@ -64,8 +64,8 @@ const RepositoriesOverview = ({ repositories, isLoading, errors, handleGoToRepos
                     })}
 
                     <Pagination
-                        count={searchInputValue.trim() === '' ? ITEMS_PER_PAGE : repositories.length < ITEMS_PER_PAGE ? currentPageId :
-                            currentPageId === ITEMS_PER_PAGE ? currentPageId : currentPageId + 1}
+                        count={searchInputValue.trim() === '' ? ITEMS_PER_PAGE : repositories.length < ITEMS_PER_PAGE
+                            ? currentPageId : currentPageId === ITEMS_PER_PAGE ? currentPageId : currentPageId + 1}
                         color="primary"
                         defaultPage={DEFAULT_PAGE_ID}
                         onChange={handlePageChange}

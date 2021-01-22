@@ -24,7 +24,6 @@ const RepositoriesContainer = () => {
         history.push(`${ROUTES.REPOSITORIES}/${id}`);
     }, [history]);
 
-
     useEffect(() => {
         const isEmptyInput = searchInputValue.trim() === '';
 
@@ -80,7 +79,6 @@ const RepositoriesContainer = () => {
 
         if (!isEmptyInput) dispatch(GET_SEARCHED_REPOSITORIES_REQUEST(params));
     }, [dispatch, searchInputValue]);
-
 
     return (
         <RepositoriesOverview

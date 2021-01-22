@@ -1,15 +1,18 @@
 import { useHistory } from 'react-router-dom';
+import { Button, Box, withStyles } from '@material-ui/core';
 
 import { ROUTES } from '../../../routes/routeNames';
 
-const HomePage = () => {
+import styles from './styles';
+
+const HomePage = ({ classes }) => {
     const history = useHistory();
 
     return (
-        <div>
-            <button onClick={() => history.push(ROUTES.REPOSITORIES)}>Repositories</button>
-        </div>
+        <Box className={classes.wrapper}>
+            <Button className={classes.homeButton} onClick={() => history.push(ROUTES.REPOSITORIES)}>Repositories</Button>
+        </Box>
     );
 };
 
-export default HomePage;
+export default withStyles(styles)(HomePage);

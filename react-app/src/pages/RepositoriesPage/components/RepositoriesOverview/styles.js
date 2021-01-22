@@ -1,31 +1,11 @@
-/** {
-  box- sizing: border - box;
-margin: 10;
-padding: 0;
-    
-  }
-
-body {
-  background: linear - gradient(
-    90deg,
-    rgb(145, 215, 255) 0 %,
-    rgb(162, 163, 255) 100 %
-    );
-}*/
-
-
-
-
-
-
-
-
-
 const styles = () => ({
   wrapper: {
     boxSizing: 'border-box',
     margin: 10,
     padding: 0,
+  },
+  boxStyle: {
+    marginBottom: 25
   },
   dashboard: {
     display: 'flex',

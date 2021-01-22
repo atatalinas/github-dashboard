@@ -10,6 +10,9 @@ const styles = () => ({
     },
     avatar: {
         marginRight: 20
+    },
+    textElement: {
+        marginBottom: 0
     }
 });
 

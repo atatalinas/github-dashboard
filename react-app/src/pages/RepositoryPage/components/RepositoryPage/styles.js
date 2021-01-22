@@ -42,6 +42,14 @@ const styles = () => ({
     circularProgressItem: {
         display: 'block',
         border: 'none'
+    },
+    textElement: {
+        marginBottom: 0,
+        marginRight: 5
+    },
+    appHeader: {
+        marginBottom: '10px',
+        textAlign: 'center'
     }
 });
 
